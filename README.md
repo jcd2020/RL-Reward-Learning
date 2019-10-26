@@ -38,12 +38,12 @@ A variant of this environment will also contain **j > k** different foods. This 
 **NOTE: UNSURE ABOUT GOOD STATE REPRESENTATION, ACTUAL RL ALG TBD, MAYBE DEEP-Q LEARNING? OR STANDARD Q-LEARNING**
 In both environments the control will have a state vector **S** describing the amount of macro nutrients consumed so far, a state vector **S'** describing the amount of macro nutrients consumed in the last time step, and a time counter **t**. 
 
-In addition to **S + S' + t**, the grid world agent will also have access to its grid location **(x,y)** and a map of the 8 squares surrounding it describing each grid location as containing no food: **0** or a food indicated by its category **[1,k]**. We cann call the environmental state variables (**t**, **(x,y)**, and the proximate grid values) collectively **V** and the two nutritional state vectors **Ŝ**.
+In addition to **S + S' + t**, the grid world agent will also have access to its grid location **(x,y)** and a map of the 8 squares surrounding it describing each grid location as containing no food: **0** or a food indicated by its category **[1,k]**. We will refer to the environmental state variables (**t**, **(x,y)**, and the proximate grid values) collectively **V**, and the two nutritional state vectors **Ŝ**.
 
 ### Experimental condition
 The experimental agent will have the exact same architecture as in the control, except this time it doesn't receive any of the **Ŝ** variables as input, receiving only the **V** variables. 
 
-At the same time as the policy is being learned, the proxy reward function is being learned by a separate module. That module will either be a.) simple linear regression from **Ŝ** to **R**, or b.) a neural network trained to map **Ŝ** to **R**. In either case, the proxy reward will be called **r(Ŝ)**. 
+At the same time the policy is being learned, the proxy reward function is being learned by a separate module. That module will either be a.) simple linear regression from **Ŝ** to **R**, or b.) a neural network trained to map **Ŝ** to **R**. In either case, the proxy reward will be called **r(Ŝ)**. 
 
 **r(Ŝ)** will be used to train the policy of the experimental agent. It will also be learned over time - though in the transfer learning experments, it will be initialized on the basis of the results from the multi armed bandit trials.
 
@@ -60,5 +60,5 @@ We would like to answer the following questions:
 6. Does transfer learning have an especially large impact in the **j > k** food environment? 
 7. Do multi armed bandits transfer knowledge notably better to grid world agents which exposed to more similar multinomial distributions in their environments? (this is a follow up to q4, does the reward function incorporate information about the environmental parameters)
 
-
+Additional directions: instead of providing the structure of partitioning **Ŝ** and **V** can the agent learn to partition the observation space on its own? 
 
