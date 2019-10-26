@@ -12,7 +12,7 @@ From a computational perspective, a big motivating question is: what is the poin
 1. A proxy reward function may be simpler to evaluate and its immediate evaluation may provide better feedback over long training episodes.
 2. Using a proxy reward function may reduce generalization error and increase stability of Q-learning
 3. A proxy reward function may show greater capacity for transfer learning.
-4. Factoring out the question "what in the environment is rewarding?" into a separate module may reduce training time in the same way that using deeper neural networks as opposed to shallower ones can exponentially reduce training complexity for highly compositional problem spaces.
+4. Factoring out the question "what in the environment is rewarding?" into a separate module may reduce training time in the same way that using deeper neural networks as opposed to shallower ones can exponentially reduce training complexity for highly compositional problem spaces. **NOTE: the main intuition here is that RL truly is a composition of at least two functions: one about the causal relation between observables and reward, and another about the best policy for navigating the environment to achieve reward**
 
 
 My final hypothesis is that the reward function may learn to incorporate information from the environment in addition to just the immediate observable information for the choice items. For example, the learned reward function might come to both reflect information about the nutritional content of various foods, as well as information on the scarcity or relative difficulty of obtaining certain nutrients - a variable which is mitigated through the distribution of food items high in that nutrient.
