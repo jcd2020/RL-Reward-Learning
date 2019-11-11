@@ -6,6 +6,8 @@ It is likely that biological learning systems are capable of evolving or learnin
 ## Analogy to model-based RL:
 The problem is thus decomposed into two questions: what in the environment is rewarding? and how does an agent find a policy that maximizes that reward? One can think of this decomposition as a way to implement model-based RL over an otherwise model-agnostic learning algorithm. The inner learning loop may reflect action choices based solely on cached Q-values for state, action pairs, but the outer system, which learns which elements of the observable state relate to the underlying reward function (survival vs. starvation), essentially encodes causal knowledge relating observables such as sugar content to likelihood of survival.
 
+This formulation bears some similarity to double-Q learning in which two agents exchange guesses of the Q-function. In particular, one can think of the proxy-reward learning network as an agent which estimates the value function V(s') and returns that as the reward to the secondary agent. Since Q(s,a) can be factorized into a product over the value function and the transition structure, we can view this architecture as a means of factorizing the two components of the Q-function to speed up acquisition.
+
 ## Computational motivation:
 From a computational perspective, a big motivating question is: what is the point of factoring out certain state variables into a proxy-reward function when we could maintain the original reward function as is and simply let the causal relationship between state and outcome be encoded in the weights of some neural value function approximator? I believe there are four potential benefits of factoring out observables into a proxy reward:
 
